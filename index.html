@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 3rd Esan PH Meeting - PH Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #dc2626 100%);
+            --dark-blue: #0f172a;
+            --medium-blue: #1e293b;
+            --accent-red: #dc2626;
+            --accent-purple: #7c3aed;
+            --gold: #fbbf24;
+            --light-text: #f1f5f9;
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: var(--dark-blue);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            z-index: -1;
+        }
+
+        .bg-animated::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(90deg, rgba(124, 58, 237, 0.03) 0px, transparent 1px, transparent 60px),
+                repeating-linear-gradient(0deg, rgba(124, 58, 237, 0.03) 0px, transparent 1px, transparent 60px);
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-subtitle {
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .event-info {
+            text-align: right;
+        }
+
+        .event-date {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .event-location {
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .lung-illustration {
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+            filter: drop-shadow(0 0 30px rgba(220, 38, 38, 0.4));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-gradient);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+            animation: slideInLeft 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: var(--accent-red);
+            border: 3px solid var(--dark-blue);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid var(--accent-purple);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .case-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .case-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-red);
+            box-shadow: 0 25px 70px rgba(220, 38, 38, 0.4);
+        }
+
+        .case-header {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hospital-name {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-left: 0.5rem;
+        }
+
+        .case-details {
+            margin-top: 1rem;
+        }
+
+        .detail-row {
+            margin-bottom: 0.8rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--accent-purple);
+            margin-right: 0.5rem;
+        }
+
+        .person-name {
+            color: var(--light-text);
+        }
+
+        .break-card {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid var(--accent-red);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .symposium-card {
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid var(--accent-purple);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--light-text);
+        }
+
+        /* Download Section */
+        .download-section {
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .download-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .download-card:nth-child(1) { animation-delay: 0.1s; }
+        .download-card:nth-child(2) { animation-delay: 0.2s; }
+        .download-card:nth-child(3) { animation-delay: 0.3s; }
+        .download-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .download-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--accent-red);
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.4);
+        }
+
+        .download-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .download-subtitle {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            background: var(--primary-gradient);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(220, 38, 38, 0.6);
+        }
+
+        .download-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .event-info {
+                text-align: center;
+            }
+
+            .logo-title {
+                font-size: 1.5rem;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -1.6rem;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-text">
+                    <div class="logo-title">MDKU</div>
+                    <div class="logo-subtitle">คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</div>
+                </div>
+            </div>
+            <div class="event-info">
+                <div class="event-date">13 ธันวาคม 2568</div>
+                <div class="event-location">Rajchaphruek Room 4-5, Avani Hotel, Khon Kaen</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 class="hero-title">PH BY CLINICAL CASES</h1>
+        <p class="hero-subtitle">The 3rd Esan PH Meeting & PH Workshop</p>
+        <svg class="lung-illustration" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="lungGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+                </linearGradient>
+                
+                <linearGradient id="lungGradientLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.9" />
+                    <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                    <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.7" />
+                </linearGradient>
+                
+                <linearGradient id="lungGradientRight" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.7" />
+                    <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                    <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.9" />
+                </linearGradient>
+                
+                <radialGradient id="highlight">
+                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+                </radialGradient>
+                
+                <filter id="shadow">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+                    <feOffset dx="2" dy="4" result="offsetblur"/>
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.5"/>
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+            <!-- Trachea -->
+            <g filter="url(#shadow)">
+                <ellipse cx="150" cy="40" rx="8" ry="12" fill="url(#lungGradient)" opacity="0.8"/>
+                <path d="M150,40 L150,80" stroke="url(#lungGradient)" stroke-width="12" fill="none" opacity="0.8"/>
+                <circle cx="150" cy="50" r="3" fill="url(#highlight)"/>
+            </g>
+            
+            <!-- Main Bronchi -->
+            <g filter="url(#shadow)">
+                <path d="M150,80 Q120,90 100,110" stroke="url(#lungGradientLeft)" stroke-width="10" fill="none" opacity="0.8"/>
+                <path d="M150,80 Q180,90 200,110" stroke="url(#lungGradientRight)" stroke-width="10" fill="none" opacity="0.8"/>
+            </g>
+            
+            <!-- Left Lung -->
+            <g filter="url(#glow)">
+                <!-- Upper lobe -->
+                <path d="M70,100 Q50,110 45,140 L45,150 Q45,165 55,175 Q60,180 70,182 Q80,184 90,180 L90,130 Q90,115 80,105 Z" 
+                      fill="url(#lungGradientLeft)" opacity="0.85"/>
+                <ellipse cx="65" cy="130" rx="15" ry="25" fill="url(#highlight)" opacity="0.15"/>
+                
+                <!-- Middle section -->
+                <path d="M55,175 Q45,180 42,200 L42,220 Q42,235 52,242 Q60,246 70,245 Q80,244 88,240 L88,185 Q80,180 70,182 Z" 
+                      fill="url(#lungGradientLeft)" opacity="0.75"/>
+                <ellipse cx="60" cy="210" rx="12" ry="20" fill="url(#highlight)" opacity="0.12"/>
+                
+                <!-- Lower lobe -->
+                <path d="M52,242 Q48,248 48,260 L48,270 Q48,280 58,285 Q68,288 78,285 Q85,282 88,275 L88,245 Q78,248 70,245 Z" 
+                      fill="url(#lungGradientLeft)" opacity="0.7"/>
+                <ellipse cx="65" cy="265" rx="10" ry="12" fill="url(#highlight)" opacity="0.1"/>
+                
+                <!-- Bronchial tree -->
+                <path d="M100,110 L90,130 M100,110 L85,125 M90,130 L88,160 M85,125 L80,150 M88,160 L88,185 M80,150 L75,170" 
+                      stroke="url(#lungGradientLeft)" stroke-width="3" fill="none" opacity="0.6"/>
+                <path d="M88,185 L88,220 M88,185 L82,210 M88,220 L88,245 M82,210 L78,230" 
+                      stroke="url(#lungGradientLeft)" stroke-width="2.5" fill="none" opacity="0.5"/>
+                <path d="M88,245 L85,265 M88,245 L82,260" 
+                      stroke="url(#lungGradientLeft)" stroke-width="2" fill="none" opacity="0.4"/>
+            </g>
+            
+            <!-- Right Lung -->
+            <g filter="url(#glow)">
+                <!-- Upper lobe -->
+                <path d="M230,100 Q250,110 255,140 L255,150 Q255,165 245,175 Q240,180 230,182 Q220,184 210,180 L210,130 Q210,115 220,105 Z" 
+                      fill="url(#lungGradientRight)" opacity="0.85"/>
+                <ellipse cx="235" cy="130" rx="15" ry="25" fill="url(#highlight)" opacity="0.15"/>
+                
+                <!-- Middle section -->
+                <path d="M245,175 Q255,180 258,200 L258,220 Q258,235 248,242 Q240,246 230,245 Q220,244 212,240 L212,185 Q220,180 230,182 Z" 
+                      fill="url(#lungGradientRight)" opacity="0.75"/>
+                <ellipse cx="240" cy="210" rx="12" ry="20" fill="url(#highlight)" opacity="0.12"/>
+                
+                <!-- Lower lobe -->
+                <path d="M248,242 Q252,248 252,260 L252,270 Q252,280 242,285 Q232,288 222,285 Q215,282 212,275 L212,245 Q222,248 230,245 Z" 
+                      fill="url(#lungGradientRight)" opacity="0.7"/>
+                <ellipse cx="235" cy="265" rx="10" ry="12" fill="url(#highlight)" opacity="0.1"/>
+                
+                <!-- Bronchial tree -->
+                <path d="M200,110 L210,130 M200,110 L215,125 M210,130 L212,160 M215,125 L220,150 M212,160 L212,185 M220,150 L225,170" 
+                      stroke="url(#lungGradientRight)" stroke-width="3" fill="none" opacity="0.6"/>
+                <path d="M212,185 L212,220 M212,185 L218,210 M212,220 L212,245 M218,210 L222,230" 
+                      stroke="url(#lungGradientRight)" stroke-width="2.5" fill="none" opacity="0.5"/>
+                <path d="M212,245 L215,265 M212,245 L218,260" 
+                      stroke="url(#lungGradientRight)" stroke-width="2" fill="none" opacity="0.4"/>
+            </g>
+            
+            <!-- Blood vessels overlay -->
+            <g opacity="0.4">
+                <path d="M80,120 Q75,130 70,145" stroke="#dc2626" stroke-width="2" fill="none"/>
+                <path d="M85,135 Q82,150 80,170" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+                <path d="M220,120 Q225,130 230,145" stroke="#dc2626" stroke-width="2" fill="none"/>
+                <path d="M215,135 Q218,150 220,170" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+            </g>
+            
+            <!-- Depth highlights -->
+            <g opacity="0.2">
+                <ellipse cx="70" cy="150" rx="25" ry="35" fill="white"/>
+                <ellipse cx="230" cy="150" rx="25" ry="35" fill="white"/>
+                <ellipse cx="65" cy="230" rx="20" ry="25" fill="white"/>
+                <ellipse cx="235" cy="230" rx="20" ry="25" fill="white"/>
+            </g>
+        </svg>
+    </section>
+
+    <div class="container">
+        <section class="schedule-section">
+            <h2 class="section-title">กำหนดการ</h2>
+            
+            <div class="timeline">
+                <!-- Morning Session 1 -->
+                <div class="timeline-item">
+                    <div class="time-badge">⏰ 08:30 - 10:00 AM</div>
+                    
+                    <div class="case-card">
+                        <div class="case-header">
+                            PH case 1
+                            <span class="hospital-name">| Udonthani Hospital</span>
+                        </div>
+                        <div class="case-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Presenter:</span>
+                                <span class="person-name">Dr. Tunlapat Bubphan</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Moderator:</span>
+                                <span class="person-name">Dr. Burabha Pussadhamma</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Discussants:</span>
+                                <div>
+                                    <div class="person-name">1) Dr. Kitiya Tiyaphak</div>
+                                    <div class="person-name">2) Dr. Sarawut Siprasan</div>
+                                    <div class="person-name">3) Dr. Kesari Singhayothaka</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-header">
+                            PH case 2
+                            <span class="hospital-name">| Khon Kaen Hospital</span>
+                        </div>
+                        <div class="case-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Presenter:</span>
+                                <span class="person-name">Dr. Pimchanok Tantiwong</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Moderator:</span>
+                                <span class="person-name">Dr. Siraphop Suwannaroj</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Discussants:</span>
+                                <div>
+                                    <div class="person-name">1) Dr. Ajanee Mahakkanukrauh</div>
+                                    <div class="person-name">2) Dr. Kesinee Wanitchachang</div>
+                                    <div class="person-name">3) Dr. Akkrawat Rattanawongpaiboon</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Morning Symposium -->
+                <div class="timeline-item">
+                    <div class="time-badge">⏰ 10:00 - 10:40 AM</div>
+                    <div class="symposium-card">
+                        📊 Morning symposium (supported by MSD)
+                    </div>
+                </div>
+
+                <!-- Break -->
+                <div class="timeline-item">
+                    <div class="time-badge">⏰ 10:40 - 11:00 AM</div>
+                    <div class="break-card">
+                        ☕ Break
+                    </div>
+                </div>
+
+                <!-- Afternoon Session 1 -->
+                <div class="timeline-item">
+                    <div class="time-badge">⏰ 11:00 - 12:30 PM</div>
+                    
+                    <div class="case-card">
+                        <div class="case-header">
+                            PH case 3
+                            <span class="hospital-name">| Mahasarakam Hospital</span>
+                        </div>
+                        <div class="case-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Presenter:</span>
+                                <span class="person-name">Dr. Thidarat Samruesaen, Dr. Kusuma Pimsorn</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Moderator:</span>
+                                <span class="person-name">Dr. Krit Leemasawat</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Discussants:</span>
+                                <div>
+                                    <div class="person-name">1) Dr. Chanyanit Trakulthong</div>
+                                    <div class="person-name">2) Dr. Warapon Leeprakobboon</div>
+                                    <div class="person-name">3) Dr. Nuntanuj Vutthikravit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-header">
+                            PH case 4
+                            <span class="hospital-name">| Srinagarind Hospital</span>
+                        </div>
+                        <div class="case-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Presenter:</span>
+                                <span class="person-name">Dr. Nattamon Sirichotikul</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Moderator:</span>
+                                <span class="person-name">Dr. Pattarin Pirompanich</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Discussants:</span>
+                                <div>
+                                    <div class="person-name">1) Dr. Piti Niyomsirivanich</div>
+                                    <div class="person-name">2) Dr. Tirachat Sewatanon</div>
+                                    <div class="person-name">3) Dr. Itthipat Arunsurat</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunch Symposium -->
+                <div class="timeline-item">
+                    <div class="time-badge">⏰ 12:30 - 13:10 PM</div>
+                    <div class="symposium-card">
+                        🍽️ Lunch symposium (Supported by J&J)
+                    </div>
+                </div>
+
+                <!-- Closing -->
+                <div class="timeline-item">
+                    <div class="time-badge">⏰ 13:10 - 13:15 PM</div>
+                    <div class="break-card">
+                        🎯 Closing
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <h2 class="section-title">ดาวน์โหลดเอกสาร</h2>
+            
+            <div style="text-align: center; padding: 2rem 0;">
+                <div class="download-icon" style="font-size: 4rem; margin-bottom: 1.5rem;">📁</div>
+                <div class="download-title" style="font-size: 1.8rem; margin-bottom: 1rem;">เอกสารประกอบการประชุม</div>
+                <div class="download-subtitle" style="font-size: 1.1rem; margin-bottom: 2rem; color: #cbd5e1;">
+                    Slides และเอกสารทั้งหมด 4 Cases
+                </div>
+                <button class="download-btn" onclick="openGoogleDrive()" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                    📥 เปิด Google Drive
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                © 2025 The 3rd Esan PH Meeting & PH Workshop<br>
+                Faculty of Medicine, Khon Kaen University
+            </p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">เกี่ยวกับเรา</a>
+                <a href="#" class="footer-link">ติดต่อเรา</a>
+                <a href="#" class="footer-link">สถานที่จัดงาน</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Open Google Drive folder
+        function openGoogleDrive() {
+            const driveUrl = 'https://drive.google.com/drive/folders/1cRhF4b8gnN1REvqtFTeWv56du5u5mQgz?usp=sharing';
+            window.open(driveUrl, '_blank');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.case-card, .download-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
